@@ -1,8 +1,3 @@
-from maths import Fraction
+from maths import *
 
-myFrac = Fraction(3, 2)
-
-myFrac.display()
-a = myFrac * 2
-print(a)
-myFrac.display()
+fraction = Fraction()
