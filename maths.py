@@ -29,8 +29,28 @@ class Fraction(object):
         else:
             return self.numerator / self.denomerator
 
+    def simplify(self):
+        pass
+
     def __str__(self):
         return f"{self.numerator}/{self.denomerator}"
+
+    def __add__(self, other):
+        numerator = self.numerator
+        denomerator = self.denomerator
+        if type(other) == int:
+            numerator += (denomerator * other)
+        elif type(other) == Fraction:
+            if other.denomerator != denomerator:
+                new_self_numerator = numerator * other.denomerator
+                other.numerator *= denomerator
+                numerator = new_self_numerator
+                denomerator = other.denomerator = denomerator * other.denomerator
+                numerator += other.numerator
+            else:
+                numerator += other.numerator
+
+        return Fraction(numerator, denomerator)
 
     def __iadd__(self, other):
         if type(other) == int:
@@ -47,6 +67,23 @@ class Fraction(object):
 
         return self
 
+    def __sub__(self, other):
+        numerator = self.numerator
+        denomerator = self.denomerator
+        if type(other) == int:
+            numerator -= (denomerator * other)
+        elif type(other) == Fraction:
+            if other.denomerator != denomerator:
+                new_self_numerator = numerator * other.denomerator
+                other.numerator *= denomerator
+                numerator = new_self_numerator
+                denomerator = other.denomerator = denomerator * other.denomerator
+                numerator -= other.numerator
+            else:
+                numerator -= other.numerator
+
+        return Fraction(numerator, denomerator)
+
     def __isub__(self, other):
         if type(other) == int:
             self.numerator -= (self.denomerator * other)
@@ -62,6 +99,17 @@ class Fraction(object):
 
         return self
 
+    def __mul__(self, other):
+        numerator = self.numerator
+        denomerator = self.denomerator
+        if type(other) == int:
+            numerator *= other
+        elif type(other) == Fraction:
+            numerator *= other.numerator
+            denomerator *= other.denomerator
+
+        return Fraction(numerator, denomerator)
+
     def __imul__(self, other):
         if type(other) == int:
             self.numerator *= other
@@ -71,7 +119,18 @@ class Fraction(object):
 
         return self
 
-    def __itruediv__(self, other):
+    def __truediv__(self, other):
+        numerator = self.numerator
+        denomerator = self.denomerator
+        if type(other) == int:
+            return Fraction(1, other)
+        elif type(other) == Fraction:
+            numerator *= other.denomerator
+            denomerator *= other.numerator
+
+            return Fraction(numerator, denomerator)
+
+    def __idiv__(self, other):
         if type(other) == int:
             self.numerator *= Fraction(1, other)
         elif type(other) == Fraction:
@@ -80,13 +139,19 @@ class Fraction(object):
 
         return self
 
+    def __eq__(self, other):
+        if type(other) == (int or float):
+            return self.decimal() == other
+        elif type(other) == Fraction:
+            return self.decimal() == other.decimal()
+
     def __getitem__(self, item):
         if item == 'numerator':
             return self.numerator
         elif item == 'denomerator':
             return self.denomerator
         else:
-            ColorPrint.error_print("The given kay is non-existing in a fraction")
+            ColorPrint.error_print("The given key doesn't exist in a fraction")
 
     def __setitem__(self, key, value):
         if key == 'numerator':
@@ -94,7 +159,5 @@ class Fraction(object):
         elif key == 'denomerator':
             self.denomerator = value
         else:
-            ColorPrint.error_print("The given kay is non-existing in a fraction")
+            ColorPrint.error_print("The given key doesn't exist in a fraction")
 
-    # def separate(self):
-    #     return self.numerator, self.denomerator
