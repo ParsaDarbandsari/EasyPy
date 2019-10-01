@@ -140,10 +140,40 @@ class Fraction(object):
         return self
 
     def __eq__(self, other):
-        if type(other) == (int or float):
+        if type(other) == int or type(other) == float:
             return self.decimal() == other
         elif type(other) == Fraction:
             return self.decimal() == other.decimal()
+
+    def __ne__(self, other):
+        if type(other) == int or type(other) == float:
+            return self.decimal() != other
+        elif type(other) == Fraction:
+            return self.decimal() != other.decimal()
+
+    def __gt__(self, other):
+        if type(other) == int or type(other) == float:
+            return self.decimal() > other
+        elif type(other) == Fraction:
+            return self.decimal() > other.decimal()
+
+    def __lt__(self, other):
+        if type(other) == int or type(other) == float:
+            return self.decimal() < other
+        elif type(other) == Fraction:
+            return self.decimal() < other.decimal()
+
+    def __ge__(self, other):
+        if type(other) == int or type(other) == float:
+            return self.decimal() >= other
+        elif type(other) == Fraction:
+            return self.decimal() >= other.decimal()
+
+    def __le__(self, other):
+        if type(other) == int or type(other) == float:
+            return self.decimal() <= other
+        elif type(other) == Fraction:
+            return self.decimal() <= other.decimal()
 
     def __getitem__(self, item):
         if item == 'numerator':
@@ -160,4 +190,3 @@ class Fraction(object):
             self.denomerator = value
         else:
             ColorPrint.error_print("The given key doesn't exist in a fraction")
-

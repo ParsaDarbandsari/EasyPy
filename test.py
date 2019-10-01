@@ -9,4 +9,4 @@ fraction.display()
 # Multiply it by a whole number
 fraction *= 2
 
-
+print()
