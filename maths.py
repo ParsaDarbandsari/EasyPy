@@ -30,7 +30,20 @@ class Fraction(object):
             return self.numerator / self.denomerator
 
     def simplify(self):
-        pass
+        simplified = False
+        divisor = 1
+
+        while not simplified:
+            if divisor > self.denomerator // 2 or divisor > self.numerator // 2:
+                simplified = True
+            elif self.numerator % divisor == 0 and self.denomerator % divisor == 0:
+                self.numerator //= divisor
+                self.denomerator //= divisor
+                divisor += 1
+            else:
+                divisor += 1
+
+        return self
 
     def __str__(self):
         return f"{self.numerator}/{self.denomerator}"
