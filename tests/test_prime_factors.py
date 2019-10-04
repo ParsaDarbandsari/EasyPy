@@ -1,4 +1,4 @@
-from maths import *
+from maths.utils import *
 
 
 def test_prime_factors_of_1():

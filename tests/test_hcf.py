@@ -1,4 +1,4 @@
-from maths import *
+from maths.utils import *
 
 
 def test_hcf_with_really_simple_factors():
@@ -6,7 +6,7 @@ def test_hcf_with_really_simple_factors():
 
 
 def test_hcf_with_equal_factors():
-    assert hcf(4, 4) == 4
+    assert hcf(4, 4) == 2
     assert hcf(5, 5) == 5
 
 

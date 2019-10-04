@@ -1,4 +1,4 @@
-from maths import Fraction
+from maths.fraction import Fraction
 
 
 def test_simplify_fraction_eight_twelveth():
