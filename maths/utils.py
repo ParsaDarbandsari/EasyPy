@@ -26,6 +26,20 @@ def hcf(factor_1: int, factor_2: int):
     return result
 
 
+def lcm(factor_1: int, factor_2: int):
+    result = None
+    i = 1
+
+    while True:
+        result = factor_1 * i
+        if result % factor_2 == 0:
+            break
+
+        i += 1
+
+    return result
+
+
 def prime_factors(num):
     factors = [1]
     divisor = 2

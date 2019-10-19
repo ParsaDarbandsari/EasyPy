@@ -57,7 +57,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 
-# Pycharm Stuff
+# Pycharm Stuff:
 .idea
 
 # Flask stuff:
