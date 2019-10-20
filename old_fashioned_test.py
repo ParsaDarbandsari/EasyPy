@@ -1,4 +1,7 @@
-from maths.utils import *
+from text import ColorText
 
-print(prime_factors(300001))
-print(prime_factors(285748))
+title = ColorText('Sample text graphic design with ColorText', 'red', 'light Yellow')
+rainbow_text = f"{ColorText('C', 'red')}{ColorText('O', 'yellow')}{ColorText('L', 'green')}{ColorText('O', 'magenta')}{ColorText('R', 'blue')}"
+
+print(title)
+print(f'Add some {rainbow_text} into your text using this awesome tool')

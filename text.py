@@ -26,6 +26,7 @@ def warning_print(*args: str):
 
 class ColorText(object):
     foreground_colors = {
+        None: "\x1b[39m",
         'black': "\x1b[30m",
         'red': "\x1b[31m",
         'green': "\x1b[32m",
@@ -63,10 +64,15 @@ class ColorText(object):
         'white': "\x1b[107m"
     }
 
-    def __init__(self, text: str, text_color, background_color=None):
+    def __init__(self, text: str, text_color: str = None, background_color: str = None):
         self.text_color = text_color
         self.background_color = background_color
-        self.text = f"{self.foreground_colors[text_color]}{self.background_colors[self.background_color]}{text}"
+        if text_color is not None:
+            self.text_color = self.text_color.lower()
+        if background_color is not None:
+            self.background_color = self.background_color.lower()
+        self.text = f"{self.foreground_colors[self.text_color]}{self.background_colors[self.background_color]}{text}" \
+            f"\x1b[49m\x1b[39m"
 
     def __str__(self):
         return self.text
