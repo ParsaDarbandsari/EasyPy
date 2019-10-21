@@ -1,6 +1,6 @@
 from text import ColoredText
 
-title = ColoredText('Sample text graphic design with ColorText', 'red', 'light Yellow')
+title = ColoredText('Sample text graphic design with ColorText', 'red', 'yellow')
 rainbow_text = f"{ColoredText('C', 'red')}{ColoredText('O', 'yellow')}{ColoredText('L', 'green')}" \
     f"{ColoredText('O', 'magenta')}{ColoredText('R', 'blue')}"
 

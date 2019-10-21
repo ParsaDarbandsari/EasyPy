@@ -49,15 +49,15 @@ class ColoredText(object):
         'black': "\x1b[40m",
         'red': "\x1b[41m",
         'green': "\x1b[42m",
-        'yellow': "\x1b[43m",
+        'yellow': "\x1b[103m",
         'blue': "\x1b[44m",
         'magenta': "\x1b[45m",
         'cyan': "\x1b[46m",
-        'light gray': "\x1b[47m",
+        'dark yellow': "\x1b[43m",
         'dark gray': "\x1b[100m",
         'light red': "\x1b[101m",
+        'light gray': "\x1b[47m",
         'light green': "\x1b[102m",
-        'light yellow': "\x1b[103m",
         'light blue': "\x1b[104m",
         'light magenta': "\x1b[105m",
         'light cyan': "\x1b[106m",
@@ -71,11 +71,11 @@ class ColoredText(object):
             self.text_color = self.text_color.lower()
         if background_color is not None:
             self.background_color = self.background_color.lower()
-        self.text = f"{self.foreground_colors[self.text_color]}{self.background_colors[self.background_color]}{text}" \
-            f"\x1b[49m\x1b[39m"
+        self.text = text
 
     def __str__(self):
-        return self.text
+        return f"{self.foreground_colors[self.text_color]}{self.background_colors[self.background_color]}{self.text}" \
+            f"\x1b[49m\x1b[39m"
 
 
 class Table(object):
