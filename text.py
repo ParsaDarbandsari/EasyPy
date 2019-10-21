@@ -24,7 +24,7 @@ def warning_print(*args: str):
     print(result)
 
 
-class ColorText(object):
+class ColoredText(object):
     foreground_colors = {
         None: "\x1b[39m",
         'black': "\x1b[30m",
@@ -76,3 +76,8 @@ class ColorText(object):
 
     def __str__(self):
         return self.text
+
+
+class Table(object):
+    def __init__(self, row_name, items):
+        pass
