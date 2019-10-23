@@ -79,5 +79,10 @@ class ColoredText(object):
 
 
 class Table(object):
-    def __init__(self, row_name, items):
+    def __init__(self, table_name):
+        self.table_name = table_name
+        self.columns = dict({})
+
+    # TODO: Find a way to read column info properly
+    def add_column(self, column_name: str, column_items: list):
         pass
