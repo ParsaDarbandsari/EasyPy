@@ -6,3 +6,5 @@ rainbow_text = f"{ColoredText('C', 'red')}{ColoredText('O', 'yellow')}{ColoredTe
 
 print(title)
 print(f'Add some {rainbow_text} into your text using this awesome tool')
+
+help(ColoredText.__str__)

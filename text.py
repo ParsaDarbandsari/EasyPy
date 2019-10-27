@@ -1,4 +1,9 @@
 def error_print(*args: str):
+    """
+    Error print
+
+    Just a pre-defined print error text method, prints a red version of you text
+    """
     red = "\x1b[31m"
     result = ''
     default = "\x1b[39m"
@@ -12,6 +17,11 @@ def error_print(*args: str):
 
 
 def warning_print(*args: str):
+    """
+    Warning Print
+
+    Just a pre-defined print warning text method, prints a yellow version of you text
+    """
     yellow = "\x1b[33m"
     result = ''
     default = "\x1b[39m"
@@ -25,6 +35,49 @@ def warning_print(*args: str):
 
 
 class ColoredText(object):
+    """
+    ColoredText
+
+    an awesome tool for you to add colors to your text in python
+
+    Text: The text that is going to be colored
+    Text Color: text_color: The color's name
+        NOTE: only the following colors are supported:
+            Default (Default)
+            black
+            red
+            green
+            yellow
+            blue
+            magenta
+            cyan
+            light black
+            light red
+            light green
+            light yellow
+            light blue
+            light cyan
+            light gray
+            dark gray
+    Background Color: The Background color's name
+        NOTE: only the following colors are supported:
+            None (Default)
+            black
+            red
+            green
+            yellow
+            blue
+            magenta
+            cyan
+            light black
+            light red
+            light green
+            light blue
+            light cyan
+            light gray
+            dark yellow
+            dark gray
+    """
     foreground_colors = {
         None: "\x1b[39m",
         'black': "\x1b[30m",
@@ -74,15 +127,41 @@ class ColoredText(object):
         self.text = text
 
     def __str__(self):
+        """
+        Returns The Finished Colored text
+        """
         return f"{self.foreground_colors[self.text_color]}{self.background_colors[self.background_color]}{self.text}" \
             f"\x1b[49m\x1b[39m"
 
 
 class Table(object):
     def __init__(self, table_name):
-        self.table_name = table_name
-        self.columns = dict({})
+        self.table_info = {'table_name': table_name}
 
-    # TODO: Find a way to read column info properly
     def add_column(self, column_name: str, column_items: list):
-        pass
+        self.table_info.update({column_name: column_items})
+
+    def __find_longest_value(self, column_name):
+        longest_value = column_name
+        other_values = self.table_info[column_name]
+
+        for value in other_values:
+            if len(longest_value) < len(value):
+                longest_value = value
+
+        return longest_value
+
+    def __dict__(self):
+        return self.table_info
+
+    def __str__(self):
+        dashes = ""
+        column_name = list(self.table_info.keys())[0]
+        dash_number = self.__find_longest_value(column_name)
+        table = f"{column_name}\n" \
+             f"{dashes}\n"
+
+        for i in range(dash_number):
+            dashes += '-'
+
+        return
