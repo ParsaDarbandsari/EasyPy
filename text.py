@@ -2,7 +2,7 @@ def error_print(*args: str):
     """
     Error print
 
-    Just a pre-defined print error text method, prints a red version of you text
+    Just a pre-defined error print text method, prints a red version of you text
     """
     red = "\x1b[31m"
     result = ''
@@ -20,7 +20,7 @@ def warning_print(*args: str):
     """
     Warning Print
 
-    Just a pre-defined print warning text method, prints a yellow version of you text
+    Just a pre-defined warning print text method, prints a yellow version of you text
     """
     yellow = "\x1b[33m"
     result = ''
@@ -155,13 +155,21 @@ class Table(object):
         return self.table_info
 
     def __str__(self):
+        spaces = -1
         dashes = ""
-        column_name = list(self.table_info.keys())[0]
+        column_name = list(self.table_info.keys())[1]
         dash_number = self.__find_longest_value(column_name)
-        table = f"{column_name}\n" \
-             f"{dashes}\n"
+        for i in range(len(dash_number)):
+            dashes = dashes + '-'
+        table = f"{column_name}\t|\n" \
+                f"{dashes}\t|\n"
 
-        for i in range(dash_number):
-            dashes += '-'
+        for v in self.table_info[column_name]:
+            if len(v) < 4:
+                for i in range(4 - len(v)):
+                    spaces = i
+                table += f"{v}{' ' * (spaces + 1)}\t|\n"
+            else:
+                table += f"{v}\t|\n"
 
-        return
+        return table
