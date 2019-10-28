@@ -1,4 +1,12 @@
 class Fraction(object):
+    """
+    Fraction
+    
+    Use this tool to create & calculate with fractions
+    
+    Parameters:
+        Numerator: the numerator of the fraction
+    """
     def __init__(self, numerator: int, denomerator: int):
         self.numerator = numerator
         self.denomerator = denomerator
