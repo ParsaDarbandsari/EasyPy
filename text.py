@@ -135,6 +135,9 @@ class ColoredText(object):
 
 
 class Table(object):
+
+    border = "|"
+
     def __init__(self, table_name):
         self.table_info = {'table_name': table_name}
 
@@ -158,11 +161,8 @@ class Table(object):
         required_spaces = self.calculate_spaces(word, max_length)
         return f"{word}{' ' * (required_spaces + 1)}"
     
-    def border(self):
-        return "|"
-    
     def create_row(self, word, max_length):
-        return f"{self.adjust_spaces(word, max_length)}{self.border()}\n"
+        return f"{self.adjust_spaces(word, max_length)}{self.border}\n"
     
     def separator(self, max_length):
         dashes = ""
@@ -176,7 +176,7 @@ class Table(object):
         longest_item = self.__find_longest_value(column_name)
     
         table = self.create_row(column_name, len(longest_item))
-        table += self.separator(len(longest_item)) + self.border() + "\n"
+        table += self.separator(len(longest_item)) + self.border + "\n"
     
         for word in self.table_info[column_name]:
             table += self.create_row(word, len(longest_item))
