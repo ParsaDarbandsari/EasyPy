@@ -151,25 +151,40 @@ class Table(object):
 
         return longest_value
 
+    def calculate_spaces(self, word, max_length):
+        return max_length - len(word)
+    
+    def adjust_spaces(self, word, max_length):
+        required_spaces = self.calculate_spaces(word, max_length)
+        return f"{word}{' ' * (required_spaces + 1)}"
+    
+    def border(self):
+        return "|"
+    
+    def create_row(self, word, max_length):
+        return f"{self.adjust_spaces(word, max_length)}{self.border()}\n"
+    
+    def separator(self, max_length):
+        dashes = ""
+        for i in range(max_length + 1):
+            dashes = dashes + '-'
+        
+        return dashes
+        
+    def create_table(self):
+        column_name = list(self.table_info.keys())[1]
+        longest_item = self.__find_longest_value(column_name)
+    
+        table = self.create_row(column_name, len(longest_item))
+        table += self.separator(len(longest_item)) + self.border() + "\n"
+    
+        for word in self.table_info[column_name]:
+            table += self.create_row(word, len(longest_item))
+    
+        return table
+
     def __dict__(self):
         return self.table_info
 
     def __str__(self):
-        spaces = -1
-        dashes = ""
-        column_name = list(self.table_info.keys())[1]
-        dash_number = self.__find_longest_value(column_name)
-        for i in range(len(dash_number)):
-            dashes = dashes + '-'
-        table = f"{column_name}\t|\n" \
-                f"{dashes}\t|\n"
-
-        for v in self.table_info[column_name]:
-            if len(v) < 4:
-                for i in range(4 - len(v)):
-                    spaces = i
-                table += f"{v}{' ' * (spaces + 1)}\t|\n"
-            else:
-                table += f"{v}\t|\n"
-
-        return table
+        return self.create_table()

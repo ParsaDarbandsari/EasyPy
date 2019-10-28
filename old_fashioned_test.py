@@ -8,6 +8,6 @@ from text import *
 # print(f'Add some {rainbow_text} into your text using this awesome tool')
 
 myTable = Table('colors')
-myTable.add_column('colors', ['blue', 'purple', 'oz', 'magenta'])
+myTable.add_column('colors', ['blue', 'purple', 'red', 'magenta'])
 
 print(myTable)
