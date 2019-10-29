@@ -135,7 +135,6 @@ class ColoredText(object):
 
 
 class Table(object):
-
     border = "|"
 
     def __init__(self, table_name):
